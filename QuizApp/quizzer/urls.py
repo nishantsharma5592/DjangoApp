@@ -6,5 +6,4 @@ app_name = 'quizzer'
 
 urlpatterns = [
     path("", views.index, name="index"),
-    path("results/", views.results, name="results"),
 ]

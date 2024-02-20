@@ -8,10 +8,25 @@ from .models import Question
 
 def index(request):
     template = loader.get_template("quizzer/index.html")
-    questions = Question.objects.all()
-    context = {'questions': questions}
-    return HttpResponse(template.render(context, request))
+    
+    if request.method == 'POST':
+        choice = request.POST.get ('choice')
+        questions=Question.objects.all()
+        correct = 0
+        incorrect = 0
+        score = 0
+        for q in questions:
+            dict_ = vars(q)
+            chosen = dict_.get(choice)
+            if q.correct_response == chosen:
+                correct += 1
+            else:
+                incorrect += 1
+        score = correct
+        context = {'score':score}
+        return render(request, 'quizzer/results.html',  context)
 
-def results (request, score):
-    return HttpResponse ('Score :', str(score))
-
+    else:
+        questions = Question.objects.all()
+        context = {'questions': questions}
+        return HttpResponse(template.render(context, request))

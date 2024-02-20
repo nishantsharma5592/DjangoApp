@@ -8,13 +8,10 @@ from .models import Question
 
 def index(request):
     template = loader.get_template("quizzer/index.html")
-    context = {}
+    questions = Question.objects.all()
+    context = {'questions': questions}
     return HttpResponse(template.render(context, request))
 
-def show_next(request, question_id):
-    question = get_object_or_404(Question, pk=question_id)
-    return render(request, "quizzer/show_next.html", {"question": question})
-
-def results (request):
-    return HttpResponse ('Score :0')
+def results (request, score):
+    return HttpResponse ('Score :', str(score))
 

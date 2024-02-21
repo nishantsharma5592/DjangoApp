@@ -43,7 +43,6 @@ def index(request):
         context = {'question': question}
         return HttpResponse(template.render(context, request))
     else:
-        print ('Counter Here!: ', counter)
         question = Question.objects.all()[counter]
         context = {'question': question}
         return HttpResponse(template.render(context, request))

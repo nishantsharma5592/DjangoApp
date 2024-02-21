@@ -27,9 +27,9 @@ def index(request):
     if request.method == 'POST':
         question = Question.objects.all()[counter]
         choice = request.POST.get ('choice '+str(counter + 1))
-        print ('Choice question ', counter, ': ')
-        print (choice)
-        chosen = choice
+        # print ('Choice question ', counter, ': ')
+        # print (choice)
+        chosen = choice # This is redundant but I still keep it
         if question.correct_response == chosen:
             correct += 1
         else:

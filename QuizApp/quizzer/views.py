@@ -16,10 +16,12 @@ def index(request):
         incorrect = 0
         score = 0
         for q in questions:
+            # Since, all answers are received in this post request, we dedicate a counter
+            # to get choice for each question.
             choice = request.POST.get ('choice '+str(counter))
             print ('Choice question ', counter, ': ')
             print (choice)
-            dict_ = vars(q)
+            dict_ = vars(q) # This gives access to q
             chosen = dict_.get(choice)
             if q.correct_response == chosen:
                 correct += 1
@@ -27,7 +29,7 @@ def index(request):
                 incorrect += 1
             counter = counter + 1
         score = correct
-        context = {'score':score}
+        context = {'incorrect': incorrect, 'correct': correct, 'score':score}
         return render(request, 'quizzer/results.html',  context)
 
     else:

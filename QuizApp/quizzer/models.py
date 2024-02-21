@@ -3,6 +3,7 @@ from django.db import models
 # Create your models here.
 
 class Question (models.Model):
+    question_id = models.IntegerField()
     question_text = models.CharField (max_length = 1000)
     choice_1 = models.CharField (max_length = 500)
     choice_2 = models.CharField (max_length = 500)

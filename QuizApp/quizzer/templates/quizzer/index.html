@@ -6,24 +6,23 @@
     		{% csrf_token %}
     		{% for q  in questions%}
 			<h1> {{q.question_text}}</h1>
-			<input type="radio" name="choice" id="choice_1" value="choice_1">
+			<input type="radio" name="choice {{q.question_id}}" id="choice_1" value="choice_1">
         		<label for="choice_1">{{ q.choice_1 }}</label>
 			<br>
 
-			<input type="radio" name="choice" id="choice_2" value="choice_2">
+			<input type="radio" name="choice {{q.question_id}}" id="choice_2" value="choice_2">
         		<label for="choice_2">{{ q.choice_2 }}</label>
 			<br>
 
-			<input type="radio" name="choice" id="choice_3" value="choice_3">
+			<input type="radio" name="choice {{q.question_id}}" id="choice_3" value="choice_3">
         		<label for="choice_3">{{ q.choice_3 }}</label>
 			<br>
 
-			<input type="radio" name="choice" id="choice_4" value="choice_4">
+			<input type="radio" name="choice {{q.question_id}}" id="choice_4" value="choice_4">
         		<label for="choice_4">{{ q.choice_4 }}</label>
 			<br>
-
-			<input type="submit" value="submit">
 		{% endfor %}
+		<input type="submit" value="submit">
 	     </form>
 	</body>
 </html>
